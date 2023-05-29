@@ -1,0 +1,81 @@
+---
+import { group, title } from "radash";
+import { basename, dirname } from "node:path";
+
+import Layout from "./Layout.astro";
+import DocList from "../components/DocList.astro";
+import Navigation from "../components/Navigation.astro";
+
+const posts = await Astro.glob("../pages/docs/**/*.md");
+const groupedPosts = group(posts, (post) => basename(dirname(post.file)));
+---
+
+<Layout title="Docs | The Open Dictionary">
+  <div class="flex flex-col">
+    <Navigation />
+    <div class="flex flex-row">
+      <aside class="sidebar">
+        {
+          Object.entries(groupedPosts).map(([parent, docs]) =>
+            parent !== "docs" ? (
+              <section>
+                <h4>
+                  <a
+                    class:list={[
+                      "hover:text-primary",
+                      {
+                        active: Astro.url.pathname === `/docs/${parent}`,
+                      },
+                    ]}
+                    href={`/docs/${parent}`}
+                  >
+                    {title(parent)}
+                  </a>
+                </h4>
+                <DocList docs={docs ?? []} />
+              </section>
+            ) : (
+              <DocList docs={docs ?? []} />
+            )
+          )
+        }
+      </aside>
+      <article
+        class="content prose prose-base prose-h1:font-bold prose-h1:mb-2 prose-headings:font-display max-w-none"
+      >
+        <slot />
+      </article>
+    </div>
+  </div>
+</Layout>
+
+<style lang="postcss"> 
+  article.content {
+    @apply flex-grow p-8 overflow-scroll;
+  }
+
+  a.active {
+    @apply text-primary;
+  }
+  
+  .sidebar {
+    @apply w-[300px] border-r border-slate-100;
+    @apply text-slate-600 font-sans p-4 text-base overflow-scroll;
+
+    h4 {
+      @apply text-slate-500 text-sm font-bold tracking-widest uppercase py-4;
+    }
+
+    li {
+      @apply py-4;
+    }
+
+    section {
+      @apply px-4;
+    
+      h4 {
+        @apply -mx-4;
+      }
+    }
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+import type { MarkdownInstance } from "astro";
+
+export interface Props {
+  docs: MarkdownInstance<Record<string, any>>[];
+}
+
+const { docs } = Astro.props;
+---
+
+<ul class="doc-list">
+  {
+    docs
+      .filter((doc) => !doc.file.endsWith("index.md"))
+      .map((doc) => (
+        <>
+          <li>
+            <a
+              class:list={[{ active: Astro.url.pathname === doc.url }]}
+              href={doc.url}
+            >
+              {doc.frontmatter.title}
+            </a>
+          </li>
+        </>
+      ))
+  }
+</ul>
+
+<style lang="postcss"> 
+  ul.doc-list {
+    li {
+      @apply py-4;
+     
+      a:hover {
+        @apply hover:text-primary;
+      }
+
+      a.active {
+        @apply text-primary;
+      }
+    }
+  }
+</style>

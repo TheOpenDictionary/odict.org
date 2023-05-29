@@ -1,81 +1,58 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Icon from "../components/Icon.astro";
+import Navigation from "../components/Navigation.astro";
+import Layout from "../layouts/Layout.astro";
+
+import "iconify-icon";
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="The Open Dictionary">
+  <Navigation absolute={true} showHome={false} bordered={false} />
+  <div class="w-full h-full flex">
+    <div
+      class="m-auto text-center justify-center items-center flex flex-col gap-2"
+    >
+      <Icon class="w-20 h-20 mb-8" />
+      <h1
+        class="font-display uppercase tracking-wide font-bold text-6xl text-slate-700"
+      >
+        The Open Dictionary
+      </h1>
+      <p class="text-slate-500 text-lg mb-8">
+        A blazingly-fast, portable dictionary file format for everyone 🚀
+      </p>
+      <div class="flex gap-12 flex-row justify-center items-center">
+        <a
+          href="https://github.com/TheOpenDictionary/odict"
+          target="_blank"
+          rel="noreferrer"
+          class="flex flex-row justify-center items-center gap-2 text-slate-500"
+        >
+          <iconify-icon icon="mdi:github" width="1.5rem"></iconify-icon>
+          View on GitHub
+        </a>
+        <a href="/docs" class="btn">
+          Read the docs
+          <iconify-icon icon="mdi:arrow-right" width="1.25rem"></iconify-icon>
+        </a>
+      </div>
+    </div>
+  </div>
 </Layout>
 
-<style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+<style lang="postcss">
+  .btn {
+    @apply rounded-full text-white py-3 shadow-lg bg-gradient-to-b from-blue-light to-blue-dark;
+    @apply relative transition-all duration-300 px-8 transform-gpu;
+    @apply flex flex-row justify-center items-center gap-3 pl-10;
+  
+    &:active {
+      @apply scale-[0.99] opacity-90;
+    }
+
+    &:before {
+      @apply absolute inset-[2px] bg-gradient-to-b from-white to-transparent rounded-full blur-none opacity-20 blur-sm;
+      content: "";
+    }
+  }
 </style>
