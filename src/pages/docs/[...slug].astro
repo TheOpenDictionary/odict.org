@@ -1,9 +1,7 @@
 ---
-// import { sortByDate } from "./utils/sortByDate.js"
+import Icon from "astro-iconify";
 
 import { getCollection } from "astro:content";
-
-import { getSlug } from "../../utils/getSlug";
 
 import Docs from "../../layouts/Docs.astro";
 
@@ -35,8 +33,8 @@ const { Content } = await doc.render();
   <footer class="ftr">
     {
       prevDoc ? (
-        <a href={`/docs/${prevDoc.slug}/`}>
-          <iconify-icon icon="mdi:arrow-left" />
+        <a href={`/docs/${prevDoc.slug}`} class="hover:!no-underline">
+          <Icon pack="mdi" name="arrow-left" width={18} height={18} />
           {prevDoc.data.title}
         </a>
       ) : (
@@ -46,8 +44,8 @@ const { Content } = await doc.render();
 
     {
       nextDoc && (
-        <a href={`/docs/${nextDoc.slug}/`}>
-          <iconify-icon icon="mdi:arrow-right" />
+        <a href={`/docs/${nextDoc.slug}`} class="hover:!no-underline">
+          <Icon pack="mdi" name="arrow-right" width={18} height={18} />
           {nextDoc.data.title}
         </a>
       )

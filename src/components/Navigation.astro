@@ -1,5 +1,7 @@
 ---
-import Icon from "./Icon.astro";
+import Icon from "astro-iconify";
+
+import BrandIcon from "./Icon.astro";
 
 export interface Props {
   absolute?: boolean;
@@ -16,7 +18,7 @@ const pathname = Astro.url.pathname;
   {
     showHome && (
       <a href="/">
-        <Icon class="w-8 h-8" />
+        <BrandIcon class="w-8 h-8" />
       </a>
     )
   }
@@ -34,7 +36,7 @@ const pathname = Astro.url.pathname;
         class="flex flex-row gap-2 items-center"
         href="https://github.com/TheOpenDictionary/odict"
       >
-        GitHub <iconify-icon icon="mdi:open-in-new"></iconify-icon>
+        GitHub <Icon width={16} height={16} pack="mdi" name="open-in-new" />
       </a>
     </li>
   </ul>
