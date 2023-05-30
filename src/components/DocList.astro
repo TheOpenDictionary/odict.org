@@ -18,8 +18,10 @@ const { docs } = Astro.props;
         <>
           <li>
             <a
-              class:list={[{ active: Astro.url.pathname.endsWith(doc.slug) }]}
-              href={`/docs/${doc.slug}`}
+              class:list={[
+                { active: Astro.url.pathname.endsWith(doc.slug + "/") },
+              ]}
+              href={`/docs/${doc.slug}/`}
             >
               {doc.data.title}
             </a>

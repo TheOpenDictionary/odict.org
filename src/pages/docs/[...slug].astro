@@ -35,7 +35,7 @@ const { Content } = await doc.render();
   <footer class="ftr">
     {
       prevDoc ? (
-        <a href={`/docs/${prevDoc.slug}`}>
+        <a href={`/docs/${prevDoc.slug}/`}>
           <iconify-icon icon="mdi:arrow-left" />
           {prevDoc.data.title}
         </a>
@@ -46,7 +46,7 @@ const { Content } = await doc.render();
 
     {
       nextDoc && (
-        <a href={`/docs/${nextDoc.slug}`}>
+        <a href={`/docs/${nextDoc.slug}/`}>
           <iconify-icon icon="mdi:arrow-right" />
           {nextDoc.data.title}
         </a>
