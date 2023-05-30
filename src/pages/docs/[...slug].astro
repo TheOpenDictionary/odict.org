@@ -1,0 +1,71 @@
+---
+// import { sortByDate } from "./utils/sortByDate.js"
+
+import { getCollection } from "astro:content";
+
+import { getSlug } from "../../utils/getSlug";
+
+import Docs from "../../layouts/Docs.astro";
+
+export async function getStaticPaths() {
+  const allDocs = await getCollection("docs");
+  const numberOfDocs = allDocs.length; // Total of all posts
+
+  return allDocs.map((doc, i) => {
+    return {
+      params: {
+        slug: doc.slug,
+      },
+      props: {
+        doc,
+        nextDoc: allDocs?.[i + 1],
+        prevDoc: allDocs?.[i - 1],
+      },
+    };
+  });
+}
+
+const { prevDoc, nextDoc, doc } = Astro.props;
+const { Content } = await doc.render();
+---
+
+<Docs>
+  <Content />
+
+  <footer class="ftr">
+    {
+      prevDoc ? (
+        <a href={`/docs/${prevDoc.slug}`}>
+          <iconify-icon icon="mdi:arrow-left" />
+          {prevDoc.data.title}
+        </a>
+      ) : (
+        <div />
+      )
+    }
+
+    {
+      nextDoc && (
+        <a href={`/docs/${nextDoc.slug}`}>
+          <iconify-icon icon="mdi:arrow-right" />
+          {nextDoc.data.title}
+        </a>
+      )
+    }
+  </footer>
+</Docs>
+
+<style lang="postcss">
+  .ftr {
+    @apply flex flex-row justify-between items-center border-t border-slate-100 py-6 w-full mt-8;
+
+    a {
+      @apply no-underline flex items-center gap-2 text-slate-500 hover:text-slate-800; 
+
+      &:nth-child(2) {
+        @apply flex-row-reverse float-right;
+      }
+    }
+  }
+
+</style>

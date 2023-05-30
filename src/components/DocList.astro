@@ -1,8 +1,10 @@
 ---
 import type { MarkdownInstance } from "astro";
+import { getSlug } from "../utils/getSlug";
+import type { CollectionEntry } from "astro:content";
 
 export interface Props {
-  docs: MarkdownInstance<Record<string, any>>[];
+  docs: CollectionEntry<"docs">[];
 }
 
 const { docs } = Astro.props;
@@ -11,15 +13,15 @@ const { docs } = Astro.props;
 <ul class="doc-list">
   {
     docs
-      .filter((doc) => !doc.file.endsWith("index.md"))
+      .filter((doc) => doc.slug.indexOf("/") > -1)
       .map((doc) => (
         <>
           <li>
             <a
-              class:list={[{ active: Astro.url.pathname === doc.url }]}
-              href={doc.url}
+              class:list={[{ active: Astro.url.pathname.endsWith(doc.slug) }]}
+              href={`/docs/${doc.slug}`}
             >
-              {doc.frontmatter.title}
+              {doc.data.title}
             </a>
           </li>
         </>
