@@ -13,13 +13,15 @@ const { docs } = Astro.props;
 
 <ul class="doc-list">
   {
-    sort(docs, doc => doc.data.order)
+    sort(docs, (doc) => doc.data.order)
       .filter((doc) => doc.slug.indexOf("/") > -1)
       .map((doc) => (
         <>
           <li>
             <a
-              class:list={[{ active: Astro.url.pathname.endsWith(doc.slug) }]}
+              class:list={[
+                { active: Astro.url.pathname.startsWith(`/docs/${doc.slug}`) },
+              ]}
               href={`/docs/${doc.slug}`}
             >
               {doc.data.title}
