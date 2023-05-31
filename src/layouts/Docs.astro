@@ -9,6 +9,7 @@ import { getCollection } from "astro:content";
 
 const docs = await getCollection("docs");
 const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
+const sectionOrder = ["introduction", "cli", "sdks", "xml"];
 ---
 
 <Layout title="Docs | The Open Dictionary">
@@ -16,30 +17,32 @@ const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
     <Navigation />
     <div class="flex flex-row flex-grow">
       <aside class="sidebar">
-        {
-          Object.entries(groupedDocs).map(([parent, docs]) => (
-            <section>
-              <h4>
-                <a
-                  class:list={[
-                    "font-display",
-                    "text-medium",
-                    "hover:text-primary",
-                    {
-                      active: new RegExp(`/docs/${parent}/?$`).test(
-                        Astro.url.pathname
-                      ),
-                    },
-                  ]}
-                  href={`/docs/${parent}`}
-                >
-                  {title(parent)}
-                </a>
-              </h4>
-              <DocList docs={docs ?? []} />
-            </section>
-          ))
-        }
+        <div class="absolute min-h-0 flex flex-col gap-8 pt-8">
+          {
+            sectionOrder.map((parent) => (
+              <section>
+                <h4>
+                  <a
+                    class:list={[
+                      "font-display",
+                      "text-medium",
+                      "hover:text-primary",
+                      {
+                        active: new RegExp(`/docs/${parent}/?$`).test(
+                          Astro.url.pathname
+                        ),
+                      },
+                    ]}
+                    href={`/docs/${parent}`}
+                  >
+                    {title(parent)}
+                  </a>
+                </h4>
+                <DocList docs={groupedDocs[parent] ?? []} />
+              </section>
+            ))
+          }
+        </div>
       </aside>
       <article
         class:list={[
@@ -86,8 +89,8 @@ const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
   }
   
   .sidebar {
-    @apply w-[300px] border-r border-slate-100 flex-shrink-0;
-    @apply text-slate-600 font-sans p-4 text-base overflow-scroll flex flex-col gap-8 pt-8;
+    @apply w-[300px] border-r border-slate-100 flex-shrink-0 relative;
+    @apply text-slate-600 font-sans p-4 text-base overflow-scroll;
 
     h4 {
       @apply text-slate-500 text-sm font-bold tracking-widest uppercase mb-4;

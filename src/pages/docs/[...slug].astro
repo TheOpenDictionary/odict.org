@@ -1,13 +1,17 @@
 ---
 import Icon from "astro-iconify";
 
+import { sort } from "radash";
+
 import { getCollection } from "astro:content";
 
 import Docs from "../../layouts/Docs.astro";
 
 export async function getStaticPaths() {
-  const allDocs = await getCollection("docs");
-  const numberOfDocs = allDocs.length; // Total of all posts
+  const allDocs = sort(
+    (await getCollection("docs")).map((doc, i) => ({ ...doc, i })),
+    ({ i, ...doc }) => i + doc.data.order
+  );
 
   return allDocs.map((doc, i) => {
     return {
