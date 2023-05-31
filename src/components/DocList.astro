@@ -2,6 +2,7 @@
 import type { MarkdownInstance } from "astro";
 import { getSlug } from "../utils/getSlug";
 import type { CollectionEntry } from "astro:content";
+import { sort } from "radash";
 
 export interface Props {
   docs: CollectionEntry<"docs">[];
@@ -12,7 +13,7 @@ const { docs } = Astro.props;
 
 <ul class="doc-list">
   {
-    docs
+    sort(docs, doc => doc.data.order)
       .filter((doc) => doc.slug.indexOf("/") > -1)
       .map((doc) => (
         <>

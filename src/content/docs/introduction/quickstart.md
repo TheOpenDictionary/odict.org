@@ -1,5 +1,6 @@
 ---
 title: Quickstart
+order: 2
 ---
 
 # Quickstart
@@ -61,5 +62,26 @@ Open your terminal in your current directory, and run the following:
 $ odict compile mydictionary.xml
 ```
 
-You'll notice you now have a new file in your directory: `mydictionary.odict`.
+You'll notice you now have a new file in your directory: `mydictionary.odict`. Congrats, you just compiled your first dictionary!
 
+## Looking up words
+
+Now comes the fun part – looking up words. To look up words in your compiled dictionary, just run the following command:
+
+```bash
+$ odict lookup mydictionary.odict "hello"
+```
+
+You should now see something that looks like the following in your terminal:
+
+<img src="/terminal.svg" width="700" class="mx-auto shadow-lg" />
+
+For a more machine readable format, you can even output JSON by adding `-f json` right after `lookup`:
+
+```bash
+$ odict lookup -f json mydictionary.odict "hello"
+```
+
+Woo-hoo! You did it. Give yourself a good pat on the back!
+
+Next, you can learn how to read dictionaries using the official ODict [SDKs](/docs/sdks) or do more cool things with the [CLI](/docs/cli)! 
