@@ -5,16 +5,16 @@ order: 3
 
 # lexicon
 
-The ODict `lexicon` prints a list of all of the words in the provided dictionary.
+The ODict `lexicon` command prints a list of all of the words in the provided dictionary.
 
 ## Usage
 
 ```bash
-$ odict lexicon [path to compile dictionary]
+odict lexicon [path to compiled dictionary]
 ```
 
 ## Example
 
 ```bash
-$ odict lexicon eng.odict
+odict lexicon eng.odict
 ```

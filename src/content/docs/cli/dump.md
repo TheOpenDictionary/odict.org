@@ -10,7 +10,7 @@ The ODict `dump` command accepts a path to a compiled dictionary file and writes
 ## Usage
 
 ```bash
-$ odict dump [flags] [path to a compiled dictionary] [path to desired output file]
+odict dump [flags] [path to a compiled dictionary] [path to desired output file]
 ```
 
 ## Output Formats
@@ -33,6 +33,6 @@ The acceptable formats are as follows:
 ## Example
 
 ```bash
-$ odict dump -f xml ./eng.odict ./eng.xml 
-$ odict dump -f sqlite ./fra.odict ./fra.sql 
+odict dump -f xml ./eng.odict ./eng.xml 
+odict dump -f sqlite ./fra.odict ./fra.sql 
 ```

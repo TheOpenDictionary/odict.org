@@ -14,7 +14,7 @@ Let's get started.
 Until we can better cross-compile the ODict binary, the best way to install ODict is directly from [Go](https://go.dev/). Make sure you have [installed the latest version of Go](https://go.dev/doc/install), then just run the following in your terminal:
 
 ```bash
-$ go install github.com/TheOpenDictionary/odict@latest
+go install github.com/TheOpenDictionary/odict@latest
 ```
 
 There is a small chance you may have to add the following to your shell configuration if your `GOPATH` is not currently part of your `PATH`:
@@ -26,7 +26,7 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 You can ensure ODict is installed by running the following command:
 
 ```bash
-$ odict --help
+odict --help
 ```
 
 ## Writing your first dictionary
@@ -65,7 +65,7 @@ Compiling your new dictionary is super straightforward – it's just one command
 Open your terminal in your current directory, and run the following:
 
 ```bash
-$ odict compile mydictionary.xml
+odict compile mydictionary.xml
 ```
 
 You'll notice you now have a new file in your directory: `mydictionary.odict`. Congrats, you just compiled your first dictionary!
@@ -75,7 +75,7 @@ You'll notice you now have a new file in your directory: `mydictionary.odict`. C
 Now comes the fun part – looking up words. To look up words in your compiled dictionary, just run the following command:
 
 ```bash
-$ odict lookup mydictionary.odict "hello"
+odict lookup mydictionary.odict "hello"
 ```
 
 You should now see something that looks like the following in your terminal:
@@ -85,7 +85,7 @@ You should now see something that looks like the following in your terminal:
 For a more machine readable format, you can even output JSON by adding `-f json` right after `lookup`:
 
 ```bash
-$ odict lookup -f json mydictionary.odict "hello"
+odict lookup -f json mydictionary.odict "hello"
 ```
 
 Woo-hoo! You did it. Give yourself a good pat on the back!

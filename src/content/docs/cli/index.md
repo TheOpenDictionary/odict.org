@@ -22,7 +22,7 @@ With the ODict CLI you can:
 Once you have [Go](https://go.dev) installed, simply run the following command:
 
 ```bash
-$ go install github.com/TheOpenDictionary/odict@latest
+go install github.com/TheOpenDictionary/odict@latest
 ```
 
 There is a small chance you may have to add the following to your shell configuration if your `GOPATH` is not currently part of your `PATH`:
@@ -34,5 +34,5 @@ export PATH="$(go env GOPATH)/bin:$PATH"
 You can confirm the installation was successful if the following command spits out a help menu:
 
 ```bash
-$ odict --help
+odict --help
 ```

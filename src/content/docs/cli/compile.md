@@ -10,7 +10,7 @@ The ODict `compile` command accepts a path to an [ODict XML](/docs/xml) (ODXML) 
 ## Usage
 
 ```bash
-$ odict compile [flags] [path to XML dictionary]
+odict compile [flags] [path to XML dictionary]
 ```
 
 ## Flags
@@ -23,6 +23,6 @@ $ odict compile [flags] [path to XML dictionary]
 
 ```bash
 # Both of these will generate eng.odict in the current directory
-$ odict compile ./eng.xml 
-$ odict compile -o ./eng.odict ./eng.xml
+odict compile ./eng.xml 
+odict compile -o ./eng.odict ./eng.xml
 ```
