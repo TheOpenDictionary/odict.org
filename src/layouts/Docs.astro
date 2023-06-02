@@ -55,8 +55,10 @@ const sectionOrder = ["introduction", "cli", "sdks", "xml"];
           "prose-code:before:content-none",
           "prose-code:font-normal",
           "prose-code:text-sm",
+          "prose-headings:text-slate-900",
           "prose-h1:border-b",
           "prose-h1:border-slate-100",
+          "prose-a:text-primary",
           "prose-h1:font-bold",
           "prose-h1:pb-4",
           "prose-headings:font-display",
@@ -71,16 +73,22 @@ const sectionOrder = ["introduction", "cli", "sdks", "xml"];
   </div>
 </Layout>
 
+<style lang="postcss" is:global>
+  .prose {
+    h1, h2, h3, h4, h5, h6 {
+      a {
+        @apply text-slate-800; 
+      }
+    }
+  }
+</style>
+
 <style lang="postcss"> 
   article.content {
     @apply flex-grow overflow-scroll h-full max-w-none relative;
 
     ::global(a) {
       @apply hover:underline;
-    }
-
-    ::global(p a), ::global(li a) {
-      @apply text-primary;
     }
   }
 

@@ -17,6 +17,12 @@ Until we can better cross-compile the ODict binary, the best way to install ODic
 $ go install github.com/TheOpenDictionary/odict@latest
 ```
 
+There is a small chance you may have to add the following to your shell configuration if your `GOPATH` is not currently part of your `PATH`:
+
+```bash
+export PATH="$(go env GOPATH)/bin:$PATH"
+```
+
 You can ensure ODict is installed by running the following command:
 
 ```bash

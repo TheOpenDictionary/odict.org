@@ -1,30 +1,36 @@
 ---
 import Icon from "astro-iconify";
 
-import { sort } from "radash";
+import { sort, group } from "radash";
 
 import { getCollection } from "astro:content";
 
 import Docs from "../../layouts/Docs.astro";
 
 export async function getStaticPaths() {
-  const allDocs = sort(
-    (await getCollection("docs")).map((doc, i) => ({ ...doc, i })),
-    ({ i, ...doc }) => i + doc.data.order
+  const docs = group(
+    await getCollection("docs"),
+    (doc) => doc.slug.split("/")[0]
   );
 
-  return allDocs.map((doc, i) => {
-    return {
-      params: {
-        slug: doc.slug,
-      },
-      props: {
-        doc,
-        nextDoc: allDocs?.[i + 1],
-        prevDoc: allDocs?.[i - 1],
-      },
-    };
-  });
+  const sections = ["introduction", "cli", "sdks", "xml"];
+
+  const allDocs = sections
+    .map((section) => sort(docs[section] ?? [], (doc) => doc.data.order))
+    .flat();
+
+  console.log(allDocs);
+
+  return allDocs.map((doc, i) => ({
+    params: {
+      slug: doc.slug,
+    },
+    props: {
+      doc,
+      nextDoc: allDocs?.[i + 1],
+      prevDoc: allDocs?.[i - 1],
+    },
+  }));
 }
 
 const { prevDoc, nextDoc, doc } = Astro.props;
