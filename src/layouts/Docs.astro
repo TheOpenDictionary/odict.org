@@ -1,50 +1,15 @@
 ---
-import { group, title } from "radash";
-
-import { getCollection } from "astro:content";
-
 import Layout from "./Layout.astro";
-import DocList from "../components/DocList.astro";
+
 import Navigation from "../components/Navigation.astro";
-
-import { sections } from "../constants";
-
-const docs = await getCollection("docs");
-const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
+import Sidebar from "../components/Sidebar.astro";
 ---
 
 <Layout title="Docs | The Open Dictionary">
   <div class="flex flex-col h-full">
     <Navigation />
     <div class="flex flex-row flex-grow">
-      <aside class="sidebar">
-        <div class="absolute min-h-0 flex flex-col gap-8 pt-4">
-          {
-            sections.map((parent) => (
-              <section>
-                <h4>
-                  <a
-                    class:list={[
-                      "font-display",
-                      "text-medium",
-                      "hover:text-primary",
-                      {
-                        active: new RegExp(`/docs/${parent}/?$`).test(
-                          Astro.url.pathname
-                        ),
-                      },
-                    ]}
-                    href={`/docs/${parent}`}
-                  >
-                    {title(parent)}
-                  </a>
-                </h4>
-                <DocList docs={groupedDocs[parent] ?? []} />
-              </section>
-            ))
-          }
-        </div>
-      </aside>
+      <Sidebar />
       <article
         class:list={[
           "content",
@@ -75,9 +40,6 @@ const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
 </Layout>
 
 <style lang="postcss" is:global>
-  :root {
-    --shiki-color-background: #333333;
-  }
   .prose {
     h1, h2, h3, h4, h5, h6 {
       a {
@@ -109,31 +71,6 @@ const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
 
     ::global(a) {
       @apply hover:underline;
-    }
-  }
-
-  a.active {
-    @apply text-primary;
-  }
-  
-  .sidebar {
-    @apply w-[300px] border-r border-slate-100 flex-shrink-0 relative;
-    @apply text-slate-600 font-sans p-4 text-base overflow-scroll;
-
-    h4 {
-      @apply text-slate-500 text-sm font-bold tracking-widest uppercase mb-4;
-    }
-
-    li {
-      @apply py-4 font-display;
-    }
-
-    section {
-      @apply px-4;
-    
-      h4 {
-        @apply -mx-4;
-      }
     }
   }
 </style>
