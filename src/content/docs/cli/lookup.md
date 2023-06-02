@@ -10,7 +10,7 @@ The ODict `lookup` command looks up words in a compiled dictionary.
 ## Usage
 
 ```bash
-odict lookup [flags] [path to a compiled dictionary] [query strings...]
+odict lookup [flags] [dictionary path] [query strings...]
 ```
 
 ## Fallbacks

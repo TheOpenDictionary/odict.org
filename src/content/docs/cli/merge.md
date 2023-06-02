@@ -14,7 +14,7 @@ Its original intended use was to expand one dictionary by "importing" the entrie
 ## Usage
 
 ```bash
-odict merge [path to compiled dictionary] [path to compiled dictionary] [output path]
+odict merge [first dictionary path] [second dictionary path] [output path]
 ```
 
 ## Example

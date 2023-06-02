@@ -1,15 +1,16 @@
 ---
 import { group, title } from "radash";
-import { basename, dirname } from "node:path";
+
+import { getCollection } from "astro:content";
 
 import Layout from "./Layout.astro";
 import DocList from "../components/DocList.astro";
 import Navigation from "../components/Navigation.astro";
-import { getCollection } from "astro:content";
+
+import { sections } from "../constants";
 
 const docs = await getCollection("docs");
 const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
-const sectionOrder = ["introduction", "cli", "sdks", "xml"];
 ---
 
 <Layout title="Docs | The Open Dictionary">
@@ -17,9 +18,9 @@ const sectionOrder = ["introduction", "cli", "sdks", "xml"];
     <Navigation />
     <div class="flex flex-row flex-grow">
       <aside class="sidebar">
-        <div class="absolute min-h-0 flex flex-col gap-8 pt-8">
+        <div class="absolute min-h-0 flex flex-col gap-8 pt-4">
           {
-            sectionOrder.map((parent) => (
+            sections.map((parent) => (
               <section>
                 <h4>
                   <a
@@ -74,6 +75,9 @@ const sectionOrder = ["introduction", "cli", "sdks", "xml"];
 </Layout>
 
 <style lang="postcss" is:global>
+  :root {
+    --shiki-color-background: #333333;
+  }
   .prose {
     h1, h2, h3, h4, h5, h6 {
       a {

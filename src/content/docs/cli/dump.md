@@ -5,12 +5,12 @@ order: 2
 
 # dump
 
-The ODict `dump` command accepts a path to a compiled dictionary file and writes it back out to either an [ODXML](/docs/xml) file or an SQL dump.
+The ODict `dump` command accepts a compiled dictionary path file and writes the dictionary back out to either an [ODXML](/docs/xml) file or an SQL dump.
 
 ## Usage
 
 ```bash
-odict dump [flags] [path to a compiled dictionary] [path to desired output file]
+odict dump [flags] [dictionary path] [path to desired output file]
 ```
 
 ## Output Formats

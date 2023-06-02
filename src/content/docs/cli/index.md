@@ -36,3 +36,10 @@ You can confirm the installation was successful if the following command spits o
 ```bash
 odict --help
 ```
+
+## Global Flags
+
+| Name      | Alias | Description           | Required? | Default |
+| --------- | ----- | --------------------- | --------- | ------- |
+| `--quiet` | `-q`  | Only print raw output | ❌         | false   |
+

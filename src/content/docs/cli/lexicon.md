@@ -10,7 +10,7 @@ The ODict `lexicon` command prints a list of all of the words in the provided di
 ## Usage
 
 ```bash
-odict lexicon [path to compiled dictionary]
+odict lexicon [dictionary path]
 ```
 
 ## Example

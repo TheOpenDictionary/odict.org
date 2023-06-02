@@ -7,19 +7,17 @@ import { getCollection } from "astro:content";
 
 import Docs from "../../layouts/Docs.astro";
 
+import { sections } from "../../constants";
+
 export async function getStaticPaths() {
   const docs = group(
     await getCollection("docs"),
     (doc) => doc.slug.split("/")[0]
   );
 
-  const sections = ["introduction", "cli", "sdks", "xml"];
-
   const allDocs = sections
     .map((section) => sort(docs[section] ?? [], (doc) => doc.data.order))
     .flat();
-
-  console.log(allDocs);
 
   return allDocs.map((doc, i) => ({
     params: {
