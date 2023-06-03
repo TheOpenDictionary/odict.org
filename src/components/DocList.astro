@@ -9,8 +9,6 @@ export interface Props {
 
 const { docs, parent } = Astro.props;
 
-const { headings } = await docs[0].render();
-
 const docList = await map(
   sort(docs, (doc) => doc.data.order).filter(
     (doc) => doc.slug.indexOf("/") > -1
@@ -20,39 +18,7 @@ const docList = await map(
     const url = `/docs/${doc.slug}`;
     const active = Astro.url.pathname.startsWith(url);
 
-    let subheadings: { active: boolean; text: string; url: string }[] = [];
-
-    if (active) {
-      const { headings } = await doc.render();
-
-      subheadings = headings
-        .filter((heading) => heading.depth === 2)
-        .map((heading) => {
-          const subURL = `/docs/${doc.slug}#${heading.slug}`;
-          console.log(
-            "hi",
-            Astro.url.hash.endsWith(subURL),
-            Astro.url.pathname,
-            subURL,
-            Astro.url.hash
-          );
-          return {
-            active: Astro.url.hash === heading.slug,
-            text: heading.text,
-            url: subURL,
-          };
-        });
-
-      console.log(subheadings);
-    }
-
-    return {
-      ...doc,
-      id,
-      url,
-      active,
-      subheadings,
-    };
+    return { ...doc, id, url, active };
   }
 );
 ---
@@ -79,20 +45,6 @@ const docList = await map(
           <a class:list={[{ active: doc.active }]} href={doc.url}>
             {doc.data.title}
           </a>
-          {doc.subheadings.length > 0 && (
-            <ul>
-              {doc.subheadings.map((subheading) => (
-                <li>
-                  <a
-                    class:list={[{ active: subheading.active }]}
-                    href={subheading.url}
-                  >
-                    {subheading.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          )}
         </li>
       ))
     }

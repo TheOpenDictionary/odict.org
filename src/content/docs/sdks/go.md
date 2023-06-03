@@ -5,6 +5,22 @@ order: 1
 
 # Go SDK
 
+<aside>
+
+### Contents
+
+- [Installing](#installing)
+- [Reading \& writing dictionaries](#reading--writing-dictionaries)
+- [Performing lookups](#performing-lookups)
+- [Indexing \& searching](#indexing--searching)
+- [Splitting entries](#splitting-entries)
+- [Merging dictionaries](#merging-dictionaries)
+- [Listing all headwords](#listing-all-headwords)
+
+</aside>
+
+## Installing 
+
 The best part of ODict being _written_ in Go is that calling it _from_ Go is super easy. 
 
 To use ODict in your project, simply add it via `go get`:
@@ -112,5 +128,13 @@ dict1 := core.ReadDictionaryFromPath("dictionary1.odict")
 dict2 := core.ReadDictionaryFromPath("dictionary2.odict")
 
 var merged types.DictionaryRepresentable = MergeDictionaries(dict1, dict2)
+```
+
+## Listing all headwords
+
+```go
+import "github.com/TheOpenDictionary/odict/lib/core"
+
+var lexicon []string = core.Lexicon("dictionary1.odict")
 ```
 

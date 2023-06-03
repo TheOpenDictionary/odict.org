@@ -48,10 +48,15 @@ import Sidebar from "../components/Sidebar.astro";
     }
 
     aside {
-      @apply bg-slate-100 px-4 py-4 rounded-md;
+      @apply bg-slate-50 px-4 py-4 rounded-md;
+
+
+      ul {
+        @apply m-0;
+      }
 
       h3 {
-        @apply text-xs uppercase font-display tracking-widest p-0 m-0 mb-2;
+        @apply text-xs uppercase font-display tracking-widest p-0 m-0 py-2;
 
         a {
           @apply text-slate-500 font-bold;
@@ -59,7 +64,7 @@ import Sidebar from "../components/Sidebar.astro";
       }
 
       p {
-        @apply m-0;
+        @apply mt-2 mb-2;
       }
     }
   }
