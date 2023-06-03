@@ -1,5 +1,7 @@
 ---
-import Icon from "./Icon.astro";
+import Icon from "astro-iconify";
+
+import BrandIcon from "./Icon.astro";
 
 export interface Props {
   absolute?: boolean;
@@ -12,17 +14,23 @@ const { absolute = false, showHome = true, bordered = true } = Astro.props;
 const pathname = Astro.url.pathname;
 ---
 
+<script lang="ts">
+function openMenu() {
+  document.getElementById("sidebar").classList.toggle("open");
+}
+</script>
+
 <nav class="navigation" class:list={[{ absolute, bordered }]}>
   {
     showHome && (
       <a href="/">
-        <Icon class="w-8 h-8" />
+        <BrandIcon class="w-8 h-8" />
       </a>
     )
   }
 
   <ul
-    class="flex flex-row justify-end flex-grow items-center gap-8 text-slate-500 relative top-0 left-0 right-0"
+    class="flex flex-row justify-center lg:justify-end lg:flex-grow items-center gap-8 text-slate-500 relative top-0 left-0 right-0"
   >
     <li>
       <a class:list={[{ active: pathname.startsWith("/docs") }]} href="/docs/">
@@ -34,13 +42,22 @@ const pathname = Astro.url.pathname;
         class="flex flex-row gap-2 items-center"
         href="https://github.com/TheOpenDictionary/odict"
       >
-        GitHub <iconify-icon icon="mdi:open-in-new"></iconify-icon>
+        GitHub <Icon width={16} height={16} pack="mdi" name="open-in-new" />
       </a>
     </li>
   </ul>
-</nav>
 
-<style lang="postcss"> 
+  <button onclick="openMenu()" class="block lg:hidden p-4 -m-4">
+    <Icon
+      pack="mdi"
+      class="text-slate-500"
+      name="menu"
+      width={32}
+      height={32}
+    />
+  </button>
+
+  <style lang="postcss"> 
   .navigation {
     @apply w-full h-16 p-4 flex flex-row justify-between items-center;
 
@@ -53,3 +70,4 @@ const pathname = Astro.url.pathname;
     }
   }
 </style>
+</nav>

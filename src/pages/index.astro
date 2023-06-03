@@ -1,9 +1,9 @@
 ---
-import Icon from "../components/Icon.astro";
+import Icon from "astro-iconify";
+
+import BrandIcon from "../components/Icon.astro";
 import Navigation from "../components/Navigation.astro";
 import Layout from "../layouts/Layout.astro";
-
-import "iconify-icon";
 ---
 
 <Layout title="The Open Dictionary">
@@ -12,28 +12,28 @@ import "iconify-icon";
     <div
       class="m-auto text-center justify-center items-center flex flex-col gap-4"
     >
-      <Icon class="w-20 h-20 mb-8" />
+      <BrandIcon class="w-20 h-20 mb-8" />
       <h1
-        class="font-display uppercase tracking-wide font-bold text-6xl text-slate-700"
+        class="font-display uppercase tracking-wide font-bold text-4xl lg:text-6xl text-slate-700"
       >
         The Open Dictionary
       </h1>
       <p class="text-slate-500 text-lg mb-8">
         A blazingly-fast, portable dictionary file format for everyone 🚀
       </p>
-      <div class="flex gap-12 flex-row justify-center items-center">
+      <div class="flex gap-6 lg:gap-12 flex-col-reverse lg:flex-row justify-center items-center">
         <a
           href="https://github.com/TheOpenDictionary/odict"
           target="_blank"
           rel="noreferrer"
           class="flex flex-row justify-center items-center gap-2 text-slate-500"
         >
-          <iconify-icon icon="mdi:github" width="1.5rem"></iconify-icon>
+          <Icon pack="mdi" name="github" height={24} width={24} />
           View on GitHub
         </a>
-        <a href="/docs/" class="btn">
+        <a href="/docs" class="btn">
           Read the docs
-          <iconify-icon icon="mdi:arrow-right" width="1.25rem"></iconify-icon>
+          <Icon pack="mdi" name="arrow-right" width={20} height={20} />
         </a>
       </div>
     </div>

@@ -1,28 +1,34 @@
 ---
-// import { sortByDate } from "./utils/sortByDate.js"
+import Icon from "astro-iconify";
+
+import { sort, group } from "radash";
 
 import { getCollection } from "astro:content";
 
-import { getSlug } from "../../utils/getSlug";
-
 import Docs from "../../layouts/Docs.astro";
 
-export async function getStaticPaths() {
-  const allDocs = await getCollection("docs");
-  const numberOfDocs = allDocs.length; // Total of all posts
+import { sections } from "../../constants";
 
-  return allDocs.map((doc, i) => {
-    return {
-      params: {
-        slug: doc.slug,
-      },
-      props: {
-        doc,
-        nextDoc: allDocs?.[i + 1],
-        prevDoc: allDocs?.[i - 1],
-      },
-    };
-  });
+export async function getStaticPaths() {
+  const docs = group(
+    await getCollection("docs"),
+    (doc) => doc.slug.split("/")[0]
+  );
+
+  const allDocs = sections
+    .map((section) => sort(docs[section] ?? [], (doc) => doc.data.order))
+    .flat();
+
+  return allDocs.map((doc, i) => ({
+    params: {
+      slug: doc.slug,
+    },
+    props: {
+      doc,
+      nextDoc: allDocs?.[i + 1],
+      prevDoc: allDocs?.[i - 1],
+    },
+  }));
 }
 
 const { prevDoc, nextDoc, doc } = Astro.props;
@@ -35,8 +41,8 @@ const { Content } = await doc.render();
   <footer class="ftr">
     {
       prevDoc ? (
-        <a href={`/docs/${prevDoc.slug}/`}>
-          <iconify-icon icon="mdi:arrow-left" />
+        <a href={`/docs/${prevDoc.slug}`} class="hover:!no-underline">
+          <Icon pack="mdi" name="arrow-left" width={18} height={18} />
           {prevDoc.data.title}
         </a>
       ) : (
@@ -46,8 +52,8 @@ const { Content } = await doc.render();
 
     {
       nextDoc && (
-        <a href={`/docs/${nextDoc.slug}/`}>
-          <iconify-icon icon="mdi:arrow-right" />
+        <a href={`/docs/${nextDoc.slug}`} class="hover:!no-underline">
+          <Icon pack="mdi" name="arrow-right" width={18} height={18} />
           {nextDoc.data.title}
         </a>
       )

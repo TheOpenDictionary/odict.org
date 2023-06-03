@@ -1,43 +1,82 @@
 ---
-import type { MarkdownInstance } from "astro";
-import { getSlug } from "../utils/getSlug";
 import type { CollectionEntry } from "astro:content";
+import { map, sort, title as titleCase } from "radash";
 
 export interface Props {
   docs: CollectionEntry<"docs">[];
+  parent: string;
 }
 
-const { docs } = Astro.props;
+const { docs, parent } = Astro.props;
+
+const docList = await map(
+  sort(docs, (doc) => doc.data.order).filter(
+    (doc) => doc.slug.indexOf("/") > -1
+  ),
+  async (doc) => {
+    const id = doc.slug.replaceAll("/", "-");
+    const url = `/docs/${doc.slug}`;
+    const active = Astro.url.pathname.startsWith(url);
+
+    return { ...doc, id, url, active };
+  }
+);
 ---
 
-<ul class="doc-list">
-  {
-    docs
-      .filter((doc) => doc.slug.indexOf("/") > -1)
-      .map((doc) => (
-        <>
-          <li>
-            <a
-              class:list={[
-                { active: Astro.url.pathname.endsWith(doc.slug + "/") },
-              ]}
-              href={`/docs/${doc.slug}/`}
-            >
-              {doc.data.title}
-            </a>
-          </li>
-        </>
+<section class="doc-list">
+  <h4 id={parent}>
+    <a
+      class:list={[
+        "font-display",
+        "text-medium",
+        "hover:text-primary",
+        { active: Astro.url.pathname.endsWith(`/docs/${parent}`) },
+      ]}
+      href={`/docs/${parent}`}
+    >
+      {titleCase(parent)}
+    </a>
+  </h4>
+
+  <ul>
+    {
+      docList.map((doc) => (
+        <li id={doc.id}>
+          <a class:list={[{ active: doc.active }]} href={doc.url}>
+            {doc.data.title}
+          </a>
+        </li>
       ))
-  }
-</ul>
+    }
+  </ul>
+</section>
 
 <style lang="postcss"> 
-  ul.doc-list {
+  .doc-list {
+    @apply px-4;
+
+    a.active {
+      @apply text-primary;
+    }
+    
+    h4 {
+      @apply text-slate-500 text-sm font-bold tracking-widest uppercase mb-4;
+      @apply -mx-4;
+    }
+
     li {
-      @apply py-4;
+      @apply py-4 font-sans font-normal;
      
       a:hover {
         @apply hover:text-primary;
+      }
+
+      ul {
+        @apply pl-4 text-slate-500 pt-4;
+
+        li:last-of-type {
+          @apply pb-0;
+        }
       }
 
       a.active {

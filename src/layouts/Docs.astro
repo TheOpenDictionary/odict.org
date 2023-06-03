@@ -1,44 +1,35 @@
 ---
-import { group, title } from "radash";
-import { basename, dirname } from "node:path";
-
 import Layout from "./Layout.astro";
-import DocList from "../components/DocList.astro";
-import Navigation from "../components/Navigation.astro";
-import { getCollection } from "astro:content";
 
-const docs = await getCollection("docs");
-const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
+import Navigation from "../components/Navigation.astro";
+import Sidebar from "../components/Sidebar.astro";
 ---
 
 <Layout title="Docs | The Open Dictionary">
   <div class="flex flex-col h-full">
     <Navigation />
     <div class="flex flex-row flex-grow">
-      <aside class="sidebar">
-        {
-          Object.entries(groupedDocs).map(([parent, docs]) => (
-            <section>
-              <h4>
-                <a
-                  class:list={[
-                    "hover:text-primary",
-                    {
-                      active: Astro.url.pathname === `/docs/${parent}/`,
-                    },
-                  ]}
-                  href={`/docs/${parent}/`}
-                >
-                  {title(parent)}
-                </a>
-              </h4>
-              <DocList docs={docs ?? []} />
-            </section>
-          ))
-        }
-      </aside>
+      <Sidebar />
       <article
-        class="content relative prose-h1:border-b prose-h1:border-slate-100 prose-h1:pb-4 prose prose-base prose-h1:font-bold prose-h1:mb-2 prose-headings:font-display max-w-none"
+        class:list={[
+          "content",
+          "prose-a:no-underline",
+          "prose-table:text-base",
+          "prose-td:py-4",
+          "prose-base",
+          "prose-code:after:content-none",
+          "prose-code:before:content-none",
+          "prose-code:font-normal",
+          "prose-code:text-sm",
+          "prose-headings:text-slate-900",
+          "prose-h1:border-b",
+          "prose-h1:border-slate-100",
+          "prose-a:text-primary",
+          "prose-h1:font-bold",
+          "prose-h1:pb-4",
+          "prose-headings:font-display",
+          "prose",
+        ]}
       >
         <div class="absolute w-full p-8 min-h-0">
           <slot />
@@ -48,33 +39,43 @@ const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
   </div>
 </Layout>
 
+<style lang="postcss" is:global>
+  .prose {
+    h1, h2, h3, h4, h5, h6 {
+      a {
+        @apply text-slate-800; 
+      }
+    }
+
+    aside {
+      @apply bg-slate-50 px-4 py-4 rounded-md;
+
+
+      ul {
+        @apply m-0;
+      }
+
+      h3 {
+        @apply text-xs uppercase font-display tracking-widest p-0 m-0 py-2;
+
+        a {
+          @apply text-slate-500 font-bold;
+        }
+      }
+
+      p {
+        @apply mt-2 mb-2;
+      }
+    }
+  }
+</style>
+
 <style lang="postcss"> 
   article.content {
-    @apply flex-grow overflow-scroll h-full;
-  }
+    @apply flex-grow overflow-scroll h-full max-w-none relative;
 
-  a.active {
-    @apply text-primary;
-  }
-  
-  .sidebar {
-    @apply w-[300px] border-r border-slate-100 flex-shrink-0;
-    @apply text-slate-600 font-sans p-4 text-base overflow-scroll;
-
-    h4 {
-      @apply text-slate-500 text-sm font-bold tracking-widest uppercase py-4;
-    }
-
-    li {
-      @apply py-4 font-display;
-    }
-
-    section {
-      @apply px-4;
-    
-      h4 {
-        @apply -mx-4;
-      }
+    ::global(a) {
+      @apply hover:underline;
     }
   }
 </style>

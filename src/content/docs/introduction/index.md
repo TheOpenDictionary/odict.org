@@ -1,5 +1,6 @@
 ---
 title: "Getting Started"
+order: 0
 ---
 
 # A Quick Introduction

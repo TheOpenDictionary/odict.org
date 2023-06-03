@@ -1,12 +1,15 @@
 ---
-title: 'My First Blog Post'
-pubDate: 2022-07-01
-description: 'This is the first post of my new Astro blog.'
-author: 'Astro Learner'
-image:
-    url: 'https://docs.astro.build/assets/full-logo-light.png' 
-    alt: 'The full Astro logo.'
-tags: ["astro", "blogging", "learning in public"]
+title: 'SDKs'
+order: 0
 ---
 
-poop
+# Official SDKs
+
+We are proud to offer official SDKs for interacting with ODict dictionaries from various programming languages. 
+
+Currently, the following platforms are supported:
+
+- [Go](./sdks/go)
+- [Java, Kotlin, Scala, etc.](./sdks/jvm)
+- [Node.js](./sdks/node)
+- [Python](./sdks/python)

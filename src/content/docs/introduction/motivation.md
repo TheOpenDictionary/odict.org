@@ -1,5 +1,6 @@
 ---
 title: "Motivation"
+order: 1
 ---
 
 # Motivation
@@ -39,6 +40,6 @@ We wanted to address these limitations. We set out to build a format that was:
 - Structured by default
 - Portable and small, with no extra overhead of database systems like SQLite
 
-The result? The Open Dictionary Project.
+The result? The Open Dictionary Project. For more details, you can check out our [comparisons table](/docs/introduction/comparisons)!
 
 Ready to get started? Check out our [Quickstart](/docs/introduction/quickstart).
