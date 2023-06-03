@@ -3,8 +3,7 @@ title: 'group'
 order: 5
 ---
 
-
-# ety
+# group
 
 The `group` element represents an group of related definitions.
 

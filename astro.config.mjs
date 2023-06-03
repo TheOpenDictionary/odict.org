@@ -8,7 +8,6 @@ import rehypeExternalLinks from "rehype-external-links";
 // https://astro.build/config
 export default defineConfig({
   site: "https://odict.org",
-  base: "/my-repo",
   integrations: [tailwind()],
   build: {
     format: "file",
