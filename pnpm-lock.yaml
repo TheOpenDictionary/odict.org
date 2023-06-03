@@ -6,7 +6,7 @@ specifiers:
   '@fontsource/noto-sans': ^5.0.2
   '@tailwindcss/typography': ^0.5.9
   '@types/node': ^20.2.5
-  astro: ^2.5.6
+  astro: ^2.5.7
   astro-iconify: ^1.2.0
   prettier: ^2.8.8
   prettier-plugin-astro: ^0.10.0
@@ -17,11 +17,11 @@ specifiers:
   tailwindcss: ^3.3.2
 
 dependencies:
-  '@astrojs/tailwind': 3.1.3_3l6xl7sjv4hxk6cn4xv4ehwpsu
+  '@astrojs/tailwind': 3.1.3_cyxi2rbbvaq22julk2hkhgjf7u
   '@fontsource/montserrat': 5.0.2
   '@fontsource/noto-sans': 5.0.2
   '@tailwindcss/typography': 0.5.9_tailwindcss@3.3.2
-  astro: 2.5.6_@types+node@20.2.5
+  astro: 2.5.7_@types+node@20.2.5
   astro-iconify: 1.2.0
   radash: 10.8.1
   tailwindcss: 3.3.2
@@ -60,10 +60,6 @@ packages:
     resolution: {integrity: sha512-qe8Nmh9rYI/HIspLSTwtbMFPj6dISG6+dJnOguTlPNXtCvS2uezdxscVBb7/3DrmNbQK49TDqpkSQ1chbRGdpQ==}
     dev: false
 
-  /@astrojs/compiler/1.4.2:
-    resolution: {integrity: sha512-xoRp7JpiMZPK/beUcZEM5kM44Z/h20wwwQcl54duPqQMyySG9vZ5xMM6dYiQmn7b3XzpZs0cT6TRDoJJ5gwHAQ==}
-    dev: false
-
   /@astrojs/compiler/1.5.0:
     resolution: {integrity: sha512-k04X/7nlMklU0HQUScxbCTf5n8/Vr+0U0bawb9QWulWxd6qJf3FmBrNATgTYiltjB4pc5HBqmmttAfFi7m4lLg==}
 
@@ -71,7 +67,7 @@ packages:
     resolution: {integrity: sha512-gssRxLGb8XnvKpqSzrDW5jdzdFnXD7eBXVkPCkkt2hv7Qzb+SAzv6hVgMok3jDCxpR1aeB+XNd9Qszj2h29iog==}
     hasBin: true
     dependencies:
-      '@astrojs/compiler': 1.4.2
+      '@astrojs/compiler': 1.5.0
       '@jridgewell/trace-mapping': 0.3.18
       '@vscode/emmet-helper': 2.8.8
       events: 3.3.0
@@ -86,13 +82,13 @@ packages:
       vscode-uri: 3.0.7
     dev: false
 
-  /@astrojs/markdown-remark/2.2.1_astro@2.5.6:
+  /@astrojs/markdown-remark/2.2.1_astro@2.5.7:
     resolution: {integrity: sha512-VF0HRv4GpC1XEMLnsKf6jth7JSmlt9qpqP0josQgA2eSpCIAC/Et+y94mgdBIZVBYH/yFnMoIxgKVe93xfO2GA==}
     peerDependencies:
       astro: ^2.5.0
     dependencies:
       '@astrojs/prism': 2.1.2
-      astro: 2.5.6_@types+node@20.2.5
+      astro: 2.5.7_@types+node@20.2.5
       github-slugger: 1.5.0
       import-meta-resolve: 2.2.2
       rehype-raw: 6.1.1
@@ -116,14 +112,14 @@ packages:
       prismjs: 1.29.0
     dev: false
 
-  /@astrojs/tailwind/3.1.3_3l6xl7sjv4hxk6cn4xv4ehwpsu:
+  /@astrojs/tailwind/3.1.3_cyxi2rbbvaq22julk2hkhgjf7u:
     resolution: {integrity: sha512-10S1omrv5K5HRVAZ0fBgN5vQykn2HRL332LAVFyBASMn1Ff6gDfSK+CPUeUu94eZUOEaPnECLK8EHAqZ8iY9CA==}
     peerDependencies:
       astro: ^2.5.0
       tailwindcss: ^3.0.24
     dependencies:
       '@proload/core': 0.3.3
-      astro: 2.5.6_@types+node@20.2.5
+      astro: 2.5.7_@types+node@20.2.5
       autoprefixer: 10.4.14_postcss@8.4.24
       postcss: 8.4.24
       postcss-load-config: 4.0.1_postcss@8.4.24
@@ -939,8 +935,8 @@ packages:
       - supports-color
     dev: false
 
-  /astro/2.5.6_@types+node@20.2.5:
-    resolution: {integrity: sha512-IdgEnjP8kqLEYgNbWcrRyqR4tUq1iEXI3AZ5RqV9PTaDd4l9H+UmN0oDjrzG8VTmCdpfSHGlQEr+0qkGPoIiOw==}
+  /astro/2.5.7_@types+node@20.2.5:
+    resolution: {integrity: sha512-qYKMIN4tXAOAsm10vU4f+Q7LfC05JmEbQiJmSBqIEhp+wnQcEUFkGLrHMSsps3oBzMtjErUdDDW5tGJcn5eVlA==}
     engines: {node: '>=16.12.0', npm: '>=6.14.0'}
     hasBin: true
     peerDependencies:
@@ -949,9 +945,9 @@ packages:
       sharp:
         optional: true
     dependencies:
-      '@astrojs/compiler': 1.4.2
+      '@astrojs/compiler': 1.5.0
       '@astrojs/language-server': 1.0.8
-      '@astrojs/markdown-remark': 2.2.1_astro@2.5.6
+      '@astrojs/markdown-remark': 2.2.1_astro@2.5.7
       '@astrojs/telemetry': 2.1.1
       '@astrojs/webapi': 2.2.0
       '@babel/core': 7.22.1

@@ -10,11 +10,11 @@ order: 4
 ### Contents
 
 - [Installing](#installing)
+- [Limitations](#limitations)
 - [Reading \& writing dictionaries](#reading--writing-dictionaries)
 - [Performing lookups](#performing-lookups)
 - [Indexing \& searching](#indexing--searching)
 - [Splitting entries](#splitting-entries)
-- [Merging dictionaries](#merging-dictionaries)
 - [Listing all headwords](#listing-all-headwords)
 
 </aside>
@@ -33,6 +33,13 @@ yarn add theopendictionary
 # PNPM
 pnpm install theopendictionary
 ```
+
+## Limitations
+
+As of this writing, the Node SDK is missing the following functionality:
+
+- Support for [`merge`](../cli/merge)
+
 
 ## Reading & writing dictionaries
 
@@ -109,40 +116,25 @@ const entries: Entry[][] = await dict.search(
 
 ## Splitting entries
 
-```go
-import (
-  "github.com/TheOpenDictionary/odict/lib/core"
-  "github.com/TheOpenDictionary/odict/lib/types"
-)
+```typescript
+import { Dictionary, type Entry } from "theopendictionary";
 
-var entries []types.Entry = core.Split(
-  SplitRequest{
-    Dictionary: dict1,
-    Query:      "hotdog",
-    Threshold:  3,
-  },
-)
-```
+// Load the dictionary from disk
+const dict = new Dictionary("dictionary.odict");
 
-## Merging dictionaries
-
-```go
-import (
-  "github.com/TheOpenDictionary/odict/lib/core"
-  "github.com/TheOpenDictionary/odict/lib/types"
-)
-
-dict1 := core.ReadDictionaryFromPath("dictionary1.odict")
-dict2 := core.ReadDictionaryFromPath("dictionary2.odict")
-
-var merged types.DictionaryRepresentable = MergeDictionaries(dict1, dict2)
+// Split "hotdog" into "hot" and "dog"
+const entries: Entry[] = await dict1.split("hotdog", 3);
 ```
 
 ## Listing all headwords
 
-```go
-import "github.com/TheOpenDictionary/odict/lib/core"
+```typescript
+import { Dictionary } from "theopendictionary";
 
-var lexicon []string = core.Lexicon("dictionary1.odict")
+// Load the dictionary from disk
+const dict = new Dictionary("dictionary.odict");
+
+// List all headwords
+const headwords: string[] = await dict1.lexicon();
 ```
 

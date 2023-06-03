@@ -15,10 +15,10 @@ odict search [flags] [dictionary path] [search term]
 
 ## Flags
 
-| Name      | Alias | Description                                                            | Required? | Default |
-| --------- | ----- | ---------------------------------------------------------------------- | --------- | ------- |
-| `--index` | `-i`  | Re-indexes the dictionary even if an index already exists              | ❌         | `false` |
-| `--exact` | `-e`  | Search based solely on headword (works the same as [lookup](./lookup)) | ❌         | `false` |
+| Name      | Alias | Description                                                  | Required? | Default |
+| --------- | ----- | ------------------------------------------------------------ | --------- | ------- |
+| `--index` | `-i`  | Re-indexes the dictionary                                    | ❌         | `false` |
+| `--exact` | `-e`  | Search only headwords (works the same as [lookup](./lookup)) | ❌         | `false` |
 
 ## Example
 

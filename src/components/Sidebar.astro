@@ -1,5 +1,7 @@
 ---
-import { title, group } from "radash";
+import Icon from "astro-iconify";
+
+import { group } from "radash";
 
 import { getCollection } from "astro:content";
 
@@ -11,6 +13,12 @@ const docs = await getCollection("docs");
 const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
 ---
 
+<script lang="ts">
+function closeMenu() {
+  document.getElementById("sidebar").classList.remove("open");
+}
+</script>
+
 <aside id="sidebar">
   <div class="absolute min-h-0 flex flex-col gap-8 py-4">
     {
@@ -19,17 +27,35 @@ const groupedDocs = group(docs, (doc) => doc.slug.split("/")[0]);
       ))
     }
   </div>
+  <button
+    class="block lg:hidden absolute top-0 p-4 right-0"
+    onclick="closeMenu()"
+  >
+    <Icon
+      pack="mdi"
+      class="text-slate-500"
+      name="close"
+      width={32}
+      height={32}
+    />
+  </button>
 </aside>
 
 <script lang="ts">
-  // Maintain scroll position
-  const id = document.location.pathname.split("/").slice(2).join("-");
-  document.getElementById(id).scrollIntoView({ block: "center" });
+// Maintain scroll position
+const id = document.location.pathname.split("/").slice(2).join("-");
+document.getElementById(id).scrollIntoView({ block: "center" });
 </script>
 
 <style lang="postcss"> 
   #sidebar {
-    @apply w-[275px] border-r border-slate-100 flex-shrink-0 relative;
+    @apply lg:max-w-[275px] border-r border-slate-100 flex-shrink-0 relative;
     @apply text-slate-600 font-sans p-4 text-base overflow-scroll;
+    @apply fixed z-50 lg:relative top-0 left-0 w-full h-full bg-white;
+    @apply lg:transform-none -translate-x-full transition-transform duration-300 ease-in-out;
+
+    &.open {
+      @apply translate-x-0;
+    }
   }
 </style>

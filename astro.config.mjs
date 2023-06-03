@@ -7,13 +7,15 @@ import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
+  site: "https://odict.org",
+  base: "/my-repo",
   integrations: [tailwind()],
   build: {
     format: "file",
   },
   markdown: {
     shikiConfig: {
-      theme: "material-theme-lighter",
+      theme: "nord",
     },
     rehypePlugins: [
       [rehypeExternalLinks, { rel: "noreferrer", target: "_blank" }],
