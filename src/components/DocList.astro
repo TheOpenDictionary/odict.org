@@ -30,7 +30,11 @@ const docList = await map(
         "font-display",
         "text-medium",
         "hover:text-primary",
-        { active: Astro.url.pathname.endsWith(`/docs/${parent}`) },
+        {
+          active: new RegExp(`/docs/${parent}(\.html)?$`).test(
+            Astro.url.pathname
+          ),
+        },
       ]}
       href={`/docs/${parent}`}
     >
