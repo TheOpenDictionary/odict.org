@@ -35,9 +35,8 @@ const { prevDoc, nextDoc, doc } = Astro.props;
 const { Content } = await doc.render();
 ---
 
-<Docs>
+<Docs title={doc.data.title}>
   <Content />
-
   <footer class="ftr">
     {
       prevDoc ? (

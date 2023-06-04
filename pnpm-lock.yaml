@@ -8,6 +8,7 @@ specifiers:
   '@types/node': ^20.2.5
   astro: ^2.5.7
   astro-iconify: ^1.2.0
+  astro-seo: ^0.7.2
   prettier: ^2.8.8
   prettier-plugin-astro: ^0.10.0
   radash: ^10.8.1
@@ -28,6 +29,7 @@ dependencies:
 
 devDependencies:
   '@types/node': 20.2.5
+  astro-seo: 0.7.2
   prettier: 2.8.8
   prettier-plugin-astro: 0.10.0
   rehype-autolink-headings: 6.1.1
@@ -934,6 +936,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /astro-seo/0.7.2:
+    resolution: {integrity: sha512-YnSqj4E6vbF7wRk3gcxOPHBjenhfgaINEJlTsnu4sovAyfyGEdQksbioYKoZ+vERRDaYvEricfSzC6fc9lieww==}
+    dev: true
 
   /astro/2.5.7_@types+node@20.2.5:
     resolution: {integrity: sha512-qYKMIN4tXAOAsm10vU4f+Q7LfC05JmEbQiJmSBqIEhp+wnQcEUFkGLrHMSsps3oBzMtjErUdDDW5tGJcn5eVlA==}

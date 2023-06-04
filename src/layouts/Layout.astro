@@ -1,4 +1,6 @@
 ---
+import { SEO } from "astro-seo";
+
 export interface Props {
   title: string;
 }
@@ -10,6 +12,9 @@ import "@fontsource/montserrat/600.css";
 import "@fontsource/montserrat/500.css";
 import "@fontsource/noto-sans";
 import "@fontsource/noto-sans/600.css";
+
+const description =
+  "A modern, blazingly-fast dictionary file format for everyone 🚀";
 ---
 
 <html class="w-full h-full" lang="en">
@@ -17,9 +22,36 @@ import "@fontsource/noto-sans/600.css";
     <meta charset="UTF-8" />
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{title}</title>
+    <SEO
+      title={title}
+      description={description}
+      openGraph={{
+        basic: {
+          title,
+          type: "site",
+          image: `${Astro.url.origin}/og.png`,
+        },
+        optional: {
+          description,
+        },
+      }}
+      twitter={{
+        title,
+        description,
+        card: "summary_large_image",
+        image: `${Astro.url.origin}/twitter.png`,
+      }}
+      extend={{
+        link: [
+          {
+            rel: "icon",
+            type: "image/svg+xml",
+            href: "/favicon.ico",
+          },
+        ],
+      }}
+    />
   </head>
   <body class="w-full h-full">
     <slot />
