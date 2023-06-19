@@ -7,12 +7,6 @@ export interface Props {
 
 const { title } = Astro.props;
 
-import "@fontsource/montserrat";
-import "@fontsource/montserrat/600.css";
-import "@fontsource/montserrat/500.css";
-import "@fontsource/noto-sans";
-import "@fontsource/noto-sans/600.css";
-
 const description =
   "A modern, blazingly-fast dictionary file format for everyone 🚀";
 ---
@@ -23,6 +17,12 @@ const description =
     <meta name="description" content="Astro description" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Noto+Sans:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+      rel="stylesheet"
+    />
     <SEO
       title={title}
       description={description}
