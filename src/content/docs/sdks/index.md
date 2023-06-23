@@ -13,3 +13,4 @@ Currently, the following platforms are supported:
 - [Java, Kotlin, Scala, etc.](./sdks/jvm)
 - [Node.js](./sdks/node)
 - [Python](./sdks/python)
+- [Web Assembly (WASM)](./sdks/wasm)
