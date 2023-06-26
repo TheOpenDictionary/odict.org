@@ -1,6 +1,6 @@
 ---
 title: 'Part of Speech Tags'
-order: 0
+order: 2
 ---
 
 # Part Of Speech Tags

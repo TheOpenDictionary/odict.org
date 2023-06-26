@@ -1,6 +1,6 @@
 ---
 title: Contributing
-order: 0
+order: 1
 ---
 
 # Contributing to ODict
