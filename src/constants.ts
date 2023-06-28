@@ -1,1 +1,1 @@
-export const sections = ["introduction", "cli", "sdks", "xml", "reference"];
+export const sections = ["introduction", "cli", "server", "sdks", "xml", "reference"];

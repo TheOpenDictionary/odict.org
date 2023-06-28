@@ -1,6 +1,6 @@
 ---
 title: 'index'
-order: 6
+order: 4
 slug: cli/index
 ---
 
