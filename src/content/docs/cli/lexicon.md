@@ -1,6 +1,6 @@
 ---
 title: 'lexicon'
-order: 3
+order: 5
 ---
 
 # lexicon
