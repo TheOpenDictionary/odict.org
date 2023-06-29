@@ -45,7 +45,15 @@ function openMenu() {
         class="flex flex-row gap-2 items-center"
         href="https://github.com/TheOpenDictionary/odict"
       >
-        GitHub <Icon width={16} height={16} pack="mdi" name="open-in-new" />
+        GitHub
+      </a>
+    </li>
+    <li>
+      <a
+        class="flex flex-row gap-2 items-center"
+        href="https://github.com/TheOpenDictionary/odict/blob/main/CHANGELOG.md"
+      >
+        Changelog
       </a>
     </li>
   </ul>
@@ -62,7 +70,7 @@ function openMenu() {
 
   <style lang="postcss"> 
   .navigation {
-    @apply w-full h-16 p-4 flex flex-row justify-between items-center;
+    @apply w-full h-16 p-4 px-6 flex flex-row justify-between items-center;
 
     &.bordered {
       @apply border-b border-slate-100; 
