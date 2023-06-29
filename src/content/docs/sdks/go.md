@@ -40,7 +40,7 @@ import "github.com/TheOpenDictionary/odict/lib/core"
 core.WriteDictionaryFromXML("<dictionary></dictionary>", "dictionary.odict")
 
 // Read a dictionary into memory and write it to a new path
-dict := core.ReadDictionaryFromPath("dictionary.odict")
+dict := core.ReadDictionary("dictionary.odict")
 core.WriteDictionaryFromExisting("new.odict", dict)
 
 // Compile a dictionary from an XML file
@@ -56,7 +56,7 @@ import (
 )
 
 // Read a dictionary into memory
-dict := core.ReadDictionaryFromPath("dictionary.odict")
+dict := core.ReadDictionary("dictionary.odict")
 
 // Look up entries
 var entries []types.Entry = core.Lookup(
@@ -77,7 +77,7 @@ import (
   "github.com/TheOpenDictionary/odict/lib/types"
 )
 
-dict := core.ReadDictionaryFromPath("dictionary.odict")
+dict := core.ReadDictionary("dictionary.odict")
 
 # Perform a full-text index of the dictionary
 search.Index(
@@ -124,8 +124,8 @@ import (
   "github.com/TheOpenDictionary/odict/lib/types"
 )
 
-dict1 := core.ReadDictionaryFromPath("dictionary1.odict")
-dict2 := core.ReadDictionaryFromPath("dictionary2.odict")
+dict1 := core.ReadDictionary("dictionary1.odict")
+dict2 := core.ReadDictionary("dictionary2.odict")
 
 var merged types.DictionaryRepresentable = MergeDictionaries(dict1, dict2)
 ```
